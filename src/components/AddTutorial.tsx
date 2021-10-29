@@ -24,7 +24,7 @@ const AddTutorial: React.FC = () => {
     };
 
     TutorialDataService.create(data)
-      .then(response => {
+      .then((response: any) => {
         setTutorial({
           id: response.data.id,
           title: response.data.title,
@@ -34,7 +34,7 @@ const AddTutorial: React.FC = () => {
         setSubmitted(true);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };

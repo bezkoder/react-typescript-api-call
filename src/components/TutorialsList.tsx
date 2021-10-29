@@ -20,11 +20,11 @@ const TutorialsList: React.FC = () => {
 
   const retrieveTutorials = () => {
     TutorialDataService.getAll()
-      .then(response => {
+      .then((response: any) => {
         setTutorials(response.data);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
@@ -42,24 +42,24 @@ const TutorialsList: React.FC = () => {
 
   const removeAllTutorials = () => {
     TutorialDataService.removeAll()
-      .then(response => {
+      .then((response: any) => {
         console.log(response.data);
         refreshList();
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
 
   const findByTitle = () => {
     TutorialDataService.findByTitle(searchTitle)
-      .then(response => {
+      .then((response: any) => {
         setTutorials(response.data);
         setCurrentTutorial(null);
         setCurrentIndex(-1);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };

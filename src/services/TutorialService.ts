@@ -2,31 +2,31 @@ import http from "../http-common";
 import ITutorialData from "../types/Tutorial";
 
 const getAll = () => {
-  return http.get("/tutorials");
+  return http.get<Array<ITutorialData>>("/tutorials");
 };
 
 const get = (id: any) => {
-  return http.get(`/tutorials/${id}`);
+  return http.get<ITutorialData>(`/tutorials/${id}`);
 };
 
 const create = (data: ITutorialData) => {
-  return http.post("/tutorials", data);
+  return http.post<ITutorialData>("/tutorials", data);
 };
 
 const update = (id: any, data: ITutorialData) => {
-  return http.put(`/tutorials/${id}`, data);
+  return http.put<any>(`/tutorials/${id}`, data);
 };
 
 const remove = (id: any) => {
-  return http.delete(`/tutorials/${id}`);
+  return http.delete<any>(`/tutorials/${id}`);
 };
 
 const removeAll = () => {
-  return http.delete(`/tutorials`);
+  return http.delete<any>(`/tutorials`);
 };
 
 const findByTitle = (title: string) => {
-  return http.get(`/tutorials?title=${title}`);
+  return http.get<Array<ITutorialData>>(`/tutorials?title=${title}`);
 };
 
 const TutorialService = {

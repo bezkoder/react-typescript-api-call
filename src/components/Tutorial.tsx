@@ -22,11 +22,11 @@ const Tutorial: React.FC<Props> = (props: Props) => {
 
   const getTutorial = (id: string) => {
     TutorialDataService.get(id)
-      .then(response => {
+      .then((response: any) => {
         setCurrentTutorial(response.data);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
@@ -49,34 +49,34 @@ const Tutorial: React.FC<Props> = (props: Props) => {
     };
 
     TutorialDataService.update(currentTutorial.id, data)
-      .then(response => {
+      .then((response: any) => {
         console.log(response.data);
         setCurrentTutorial({ ...currentTutorial, published: status });
         setMessage("The status was updated successfully!");
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
 
   const updateTutorial = () => {
     TutorialDataService.update(currentTutorial.id, currentTutorial)
-      .then(response => {
+      .then((response: any) => {
         console.log(response.data);
         setMessage("The tutorial was updated successfully!");
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
 
   const deleteTutorial = () => {
     TutorialDataService.remove(currentTutorial.id)
-      .then(response => {
+      .then((response: any) => {
         console.log(response.data);
         props.history.push("/tutorials");
       })
-      .catch(e => {
+      .catch((e: Error) => {
         console.log(e);
       });
   };
