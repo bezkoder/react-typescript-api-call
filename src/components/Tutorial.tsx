@@ -1,16 +1,13 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import TutorialDataService from "../services/TutorialService";
 import ITutorialData from "../types/Tutorial";
 
-interface RouterProps { // type for `match.params`
-  id: string; // must be type `string` since value comes from the URL
-}
+const Tutorial: React.FC = () => {
+  const { id }= useParams();
+  let navigate = useNavigate();
 
-type Props = RouteComponentProps<RouterProps>;
-
-const Tutorial: React.FC<Props> = (props: Props) => {
   const initialTutorialState = {
     id: null,
     title: "",
@@ -32,8 +29,9 @@ const Tutorial: React.FC<Props> = (props: Props) => {
   };
 
   useEffect(() => {
-    getTutorial(props.match.params.id);
-  }, [props.match.params.id]);
+    if (id)
+      getTutorial(id);
+  }, [id]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -74,7 +72,7 @@ const Tutorial: React.FC<Props> = (props: Props) => {
     TutorialDataService.remove(currentTutorial.id)
       .then((response: any) => {
         console.log(response.data);
-        props.history.push("/tutorials");
+        navigate("/tutorials");
       })
       .catch((e: Error) => {
         console.log(e);
